@@ -110,6 +110,7 @@ Modified by:
                 <h4 class="modal-title">CHURCH ANNOUNCEMENT / EVENT</h4>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="viewAnnouncementId" />
                 <img class="img-responsive" id="viewAnnouncementImage" />
                 <h2 id="viewAnnouncementTitle"></h2>
                 <p class="lead" id="viewAnnouncementVenue"></p>
@@ -918,6 +919,7 @@ Modified by:
 
         $("#viewAnnouncementImage").attr('src', $(this).data('image'));
         $("#viewAnnouncementTitle").text($(this).data('title'));
+        $("#viewAnnouncementId").val($(this).data('id'));
         $("#viewAnnouncementVenue").text($(this).data('venue'));
         $("#viewAnnouncementStartDate").text($(this).data('start-date'));
         $("#viewAnnouncementStartTime").text($(this).data('start-time'));

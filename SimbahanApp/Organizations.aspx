@@ -606,26 +606,26 @@ Modified by:
                     map.DrawRoute($("#startPosition").val(), $("#<%= organizationMapDestination.ClientID %>").val());
             });
 
-          $("#<%= btnAddToFav.ClientID %>").click(function (e) {
-                e.preventDefault();
+        $("#<%= btnAddToFav.ClientID %>").click(function (e) {
+            e.preventDefault();
 
-                if ($("#<%= btnAddToFav.ClientID %>").attr('src') == '/Images/star.png') {
+            if ($("#<%= btnAddToFav.ClientID %>").attr('src') == '/Images/star.png') {
                     $("#<%= btnAddToFav.ClientID %>").attr('src', '/Images/starcolored.png');
                 } else {
                     $("#<%= btnAddToFav.ClientID %>").attr('src', '/Images/star.png');
                 }
 
-        var id = window.location.href.includes('?')
-            ? window.location.href.split('=')[1]
-            : window.location.href.split('/')[window.location.href.split('/').length - 1];
-        var aID = $('#viewAnnouncementId').val();
-        console.log(aID);
-                (new http).post("Organizations.aspx/OnFavoriteAnnouncements",
-                    {
-                        announcementId: aID
-                    }).then(function (response) {
-                        if (response.d) {
-                            if ($("#<%= btnAddToFav.ClientID %>").attr('src') != '/Images/star.png') {
+              var id = window.location.href.includes('?')
+                  ? window.location.href.split('=')[1]
+                  : window.location.href.split('/')[window.location.href.split('/').length - 1];
+              var aID = $('#viewAnnouncementId').val();
+              console.log(aID);
+              (new http).post("Organizations.aspx/OnFavoriteAnnouncements",
+                  {
+                      announcementId: aID
+                  }).then(function (response) {
+                      if (response.d) {
+                          if ($("#<%= btnAddToFav.ClientID %>").attr('src') != '/Images/star.png') {
                                 swal(
                                     'Added to favorites!',
                                     'Announcement has been added to your favorites list!',
@@ -645,9 +645,9 @@ Modified by:
                                 'Warning'
                             );
                         }
-                        
+
                     }).run();
-            });
+          });
 
         $(document).on('click',
             '#ShareTw',
@@ -740,12 +740,14 @@ Modified by:
                     e.preventDefault();
 
                     var message = '';
+
+                    var org = '?id=';
                     
-                   
+                    var id = $("#<%= OrganizationId.ClientID %>").val();
                     window.open(
-                        'https://www.facebook.com/dialog/feed?app_id=431222653910082&redirect_uri=http://www.mycatholicportal.org&link=http://www.mycatholicportal.org/Organizations.aspx?id=' + $("#<%= OrganizationId.ClientID %>").val() + "/" +
-                        $("#viewAnnouncementId").val(),
-                        'Share To Facebook',
+                        'https://www.facebook.com/dialog/feed?app_id=431222653910082&redirect_uri=http://www.mycatholicportal.org/Organizations.aspx&link=http://www.mycatholicportal.org/Organizations.aspx' +
+                        org +
+                        id,
                         'width=500,height=300');
 
 

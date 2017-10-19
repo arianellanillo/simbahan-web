@@ -121,13 +121,13 @@ namespace SimbahanApp {
         protected global::System.Web.UI.WebControls.Button btnSaveAnnouncement;
         
         /// <summary>
-        /// btnAddToFav control.
+        /// btnAddToFavo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage btnAddToFav;
+        protected global::System.Web.UI.HtmlControls.HtmlImage btnAddToFavo;
         
         /// <summary>
         /// OrganizationName control.

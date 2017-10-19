@@ -85,13 +85,13 @@ namespace SimbahanApp.Account {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl favoriteAdorationAnnouncements;
         
         /// <summary>
-        /// favoriteAnnouncementss control.
+        /// favoriteOrganizationAnnouncements control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl favoriteAnnouncementss;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl favoriteOrganizationAnnouncements;
         
         /// <summary>
         /// favoriteSaints control.

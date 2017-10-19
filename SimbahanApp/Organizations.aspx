@@ -110,7 +110,7 @@ Modified by:
                 <h4 class="modal-title">CHURCH ANNOUNCEMENT / EVENT</h4>
             </div>
             <div class="modal-body">
-                <input type="hidden" id="viewOrgAnnouncementId" />
+                <input type="hidden" id="viewAnnouncementId" />
                 <img class="img-responsive" id="viewAnnouncementImage" />
                 <h2 id="viewAnnouncementTitle"></h2>
                 <p class="lead" id="viewAnnouncementVenue"></p>
@@ -130,7 +130,7 @@ Modified by:
          <div class="modal-footer">
                 <div style="display:-webkit-inline-box; margin-right: -7%;">
                     <div style="width: 26%; margin-top: -2%;">
-                        <img src="Images/star.png" id="btnAddToFavo" runat="server" title="Add to Favorites!" width="95" height="70"/>
+                        <img src="Images/star.png" id="btnAddToFav" runat="server" title="Add to Favorites!" width="95" height="70"/>
                     </div>
                     <div style="margin-left: 2%;">
                         <button id="btnShareSocialTwit" type="submit" class="eltd-btn eltd-btn-large eltd-btn-solid eltd-btn-custom-border-hover eltd-btn-custom-hover-color eltd-btn-icon chorg" data-hover-color="#000" data-hover-border-color="#000" data-dpmaxz-eid="2" style="color: rgb(255, 255, 255); border-color: rgb(26, 181, 193);">
@@ -607,45 +607,45 @@ Modified by:
                     map.DrawRoute($("#startPosition").val(), $("#<%= organizationMapDestination.ClientID %>").val());
             });
 
-        $("#<%= btnAddToFavo.ClientID %>").click(function (e) {
+        $("#<%= btnAddToFav.ClientID %>").click(function (e) {
             e.preventDefault();
 
-            if ($("#<%= btnAddToFavo.ClientID %>").attr('src') == '/Images/starcolored.png') {
-                $("#<%= btnAddToFavo.ClientID %>").attr('src', '/Images/star.png');
-            } else {
-                $("#<%= btnAddToFavo.ClientID %>").attr('src', '/Images/starcolored.png');
-            }
+            if ($("#<%= btnAddToFav.ClientID %>").attr('src') == '/Images/star.png') {
+                    $("#<%= btnAddToFav.ClientID %>").attr('src', '/Images/starcolored.png');
+                } else {
+                    $("#<%= btnAddToFav.ClientID %>").attr('src', '/Images/star.png');
+                }
 
               var id = window.location.href.includes('?')
                   ? window.location.href.split('=')[1]
                   : window.location.href.split('/')[window.location.href.split('/').length - 1];
-              var aID = $('#viewOrgAnnouncementId').val();
+              var aID = $('#viewAnnouncementId').val();
               console.log(aID);
-              (new http).post("Organizations.aspx/OnFavoriteOrgAnnouncements",
+              (new http).post("Organizations.aspx/OnFavoriteAnnouncements",
                   {
-                      organnouncementId: aID
+                      announcementId: aID
                   }).then(function (response) {
                       if (response.d) {
-                          if ($("#<%= btnAddToFavo.ClientID %>").attr('src') != '/Images/starcolored.png') {
-                              swal(
-                                  'Remove from favorites!',
-                                  'Announcement has been removed to your favorites list!',
-                                  'success'
-                              );
-                          } else {
-                              swal(
-                                  'Added from favorites!',
-                                  'Announcement has been added from your favorites list!',
-                                  'success'
-                              );
-                          }
-                      } else {
-                          swal(
-                              'You are not be able to add it to favorites!',
-                              'You must Log-in first!',
-                              'Warning'
-                          );
-                      }
+                          if ($("#<%= btnAddToFav.ClientID %>").attr('src') != '/Images/star.png') {
+                                swal(
+                                    'Added to favorites!',
+                                    'Announcement has been added to your favorites list!',
+                                    'success'
+                                );
+                            } else {
+                                swal(
+                                    'Removed from favorites!',
+                                    'Announcement has been removed from your favorites list!',
+                                    'success'
+                                );
+                            }
+                        } else {
+                            swal(
+                                'You are not be able to add it to favorites!',
+                                'You must Log-in first!',
+                                'Warning'
+                            );
+                        }
 
                     }).run();
           });
@@ -919,7 +919,7 @@ Modified by:
 
         $("#viewAnnouncementImage").attr('src', $(this).data('image'));
         $("#viewAnnouncementTitle").text($(this).data('title'));
-        $("#viewOrgAnnouncementId").val($(this).data('id'));
+        $("#viewAnnouncementId").val($(this).data('id'));
         $("#viewAnnouncementVenue").text($(this).data('venue'));
         $("#viewAnnouncementStartDate").text($(this).data('start-date'));
         $("#viewAnnouncementStartTime").text($(this).data('start-time'));

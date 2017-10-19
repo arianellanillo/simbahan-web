@@ -241,7 +241,7 @@
 
          <h3 class="moods">Organization Announcements</h3>
 
-        <h3 id="favoriteAnnouncementss" runat="server">
+        <h3 id="favoriteOrganizationAnnouncements" runat="server">
 
         </h3>
     </div>

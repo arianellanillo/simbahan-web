@@ -87,20 +87,6 @@ namespace SimbahanApp.Account
                         favoriteAnnouncements.InnerHtml += announcementItem.ToHtml();
                     }
 
-                    var favoriteServicess = new FavoritesService();
-
-                    var organnouncements = favoriteServices.GetFavoriteOrgAnnouncement(Auth.user().Id);
-
-                    favoriteAnnouncementss.InnerHtml = "";
-
-                    foreach (var organnouncement in organnouncements)
-                    {
-                        var organnouncementItem = new OrgAnnouncementItem(organnouncement.Id, organnouncement.Title, organnouncement.Venue,
-                            organnouncement.ImagePath);
-
-                        favoriteAnnouncementss.InnerHtml += organnouncementItem.ToHtml();
-                    }
-
                     var organizations = favoriteService.GetFavoriteOrganizations(Auth.user().Id);
 
                     favoriteOrganizations.InnerHtml = "";

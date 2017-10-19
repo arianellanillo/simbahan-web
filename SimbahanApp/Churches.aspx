@@ -1074,10 +1074,10 @@ Modified by:
     $("#<%= btnAddToFav.ClientID %>").click(function (e) {
                 e.preventDefault();
 
-                if ($("#<%= btnAddToFav.ClientID %>").attr('src') == '/Images/starcolored.png') {
-                    $("#<%= btnAddToFav.ClientID %>").attr('src', '/Images/star.png');
-                } else {
+                if ($("#<%= btnAddToFav.ClientID %>").attr('src') == '/Images/star.png') {
                     $("#<%= btnAddToFav.ClientID %>").attr('src', '/Images/starcolored.png');
+                } else {
+                    $("#<%= btnAddToFav.ClientID %>").attr('src', '/Images/star.png');
                 }
 
         var id = window.location.href.includes('?')
@@ -1090,16 +1090,16 @@ Modified by:
                         announcementId: aID
                     }).then(function (response) {
                         if (response.d) {
-                            if ($("#<%= btnAddToFav.ClientID %>").attr('src') != '/Images/starcolored.png') {
+                            if ($("#<%= btnAddToFav.ClientID %>").attr('src') != '/Images/star.png') {
                                 swal(
-                                    'Remove from favorites!',
-                                    'Announcement has been removed to your favorites list!',
+                                    'Added to favorites!',
+                                    'Announcement has been added to your favorites list!',
                                     'success'
                                 );
                             } else {
                                 swal(
-                                    'Added from favorites!',
-                                    'Announcement has been added from your favorites list!',
+                                    'Removed from favorites!',
+                                    'Announcement has been removed from your favorites list!',
                                     'success'
                                 );
                             }

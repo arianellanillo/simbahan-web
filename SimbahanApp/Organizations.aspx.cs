@@ -22,7 +22,7 @@ namespace SimbahanApp
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            btnAddToFavo.Src = "Images/star.png";
+            btnAddToFav.Src = "Images/star.png";
 
             var imgArr = new List<string>();
             var organizationId = 0;
@@ -221,20 +221,31 @@ namespace SimbahanApp
         }
 
         [WebMethod]
-        public static bool OnFavoriteOrgAnnouncements(int organnouncementId)
+        public static bool OnFavoriteAnnouncements(int announcementId)
         {
-            var service = new FavoritesService();
-
-            if (service.IsOrgAnnouncementAlreadyInFavorites(Auth.user().Id, organnouncementId))
+            using (var dbconn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString))
             {
-                service.RemoveOrgAnnouncement(Auth.user().Id, organnouncementId);
-            }
-            else
-            {
-                service.AddOrgAnnouncement(Auth.user().Id, organnouncementId);
-            }
+                if (dbconn.State == ConnectionState.Open)
+                    dbconn.Close();
+                dbconn.Open();
 
-            return true;
+                using (var cmd = new SqlCommand("[spInsertFavoriteAnnouncements]", dbconn))
+                {
+                    try
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@AnnouncementID", announcementId);
+                        cmd.Parameters.AddWithValue("@userID", Auth.user().Id);
+                        cmd.ExecuteNonQuery();
+
+
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
+                }
+            } return true;
         }
 
         protected void btnAddAnnouncement_Click(object sender, EventArgs e)
